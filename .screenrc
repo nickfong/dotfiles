@@ -1,0 +1,36 @@
+## begin .screenrc ##
+
+# disable startup message
+startup_message off
+
+# always show bar at bottom of window
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d/%y %c:%s"
+
+# change the escape character to a backtick 
+escape ``
+
+# disable freezing of windows
+bind s
+
+# reload .screenrc from within active screen session
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded'"
+
+# longer scrollback 
+defscrollback 500000
+
+# make it possible to select more than 10 screens
+bind  ! select 11
+bind  @ select 12
+bind \# select 13
+bind  $ select 14
+bind  % select 15
+bind \^ select 16
+bind  & select 17
+bind  * select 18
+bind  ( select 19
+bind  ) select 10
+
+## end .screenrc ##
+
