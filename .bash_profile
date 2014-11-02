@@ -31,7 +31,7 @@ export GREP_OPTIONS='--color=auto'
 alias gitpush='git push github master'
 alias gitpull='git pull github master'
 alias gitcom='git commit'
-alias gitadd='git add -u :/'
+alias gitadd='git add -u'
 
 # Timesavers
 alias reload='source ~/.bash_profile'
