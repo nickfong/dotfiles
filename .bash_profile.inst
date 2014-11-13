@@ -13,5 +13,16 @@ done
 for file in ${HOME}/bashrc.d/*; do 
     [[ -x ${file} ]] && . "${file}"
 done
+
+if [ $USER == "cs161-gy" ]; then
+    alias runproj='./client -i 54.69.173.166 -c client_cert.crt -m client_modulus.key -d client_private.key'
+    # Manually remove elements from $PATH that account doesn't have read access
+    # to so git aliases work
+    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/ucb/:/share/b/grading/bin:/share/b/bin
+    cd ~/CS161
+fi
+if [ $USER == "cs150-an" ]; then
+    cd ~/Project/fa14_team02
+fi
 ## end .bash_profile.inst ##
 
