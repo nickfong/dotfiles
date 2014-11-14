@@ -28,6 +28,7 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export GREP_OPTIONS='--color=auto'
 
 # Custom Git Commands
+alias g='git'
 alias gitpush='git push github master'
 alias gitpull='git pull github master'
 alias gitcom='git commit'
@@ -36,6 +37,10 @@ alias gitadd='git add -u'
 # Timesavers
 alias reload='source ~/.bash_profile'
 alias rmspaces='find . -depth | rename " " "_" *'
+
+# Share screen session
+alias csharescreen='screen -dmS sharedscreen'
+alias sharescreen='screen -x sharedscreen'
 
 # Green Prompt
 SYSCOLOR=$GREEN
@@ -63,5 +68,17 @@ fi
 # Custom prompt
 export PS1="\["$SYSCOLOR"\][\u@\[\e[0;31m\]\h\[\e[m\] \[\e[m\]\[\e[0;94m\]\W\[\e[m\]\["$SYSCOLOR"\]][\d \t]\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"
 export PS2="[\d \t] continue> "
+
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
+
 ## end .bash_profile ##
 
