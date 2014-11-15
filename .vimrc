@@ -51,23 +51,26 @@ noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
 noremap <C-H> <C-W><C-H>
-noremap <F6> :resize -5 <CR>
-noremap <F7> :resize +5 <CR>
-noremap <F5> :vertical resize -5 <CR>
-noremap <F8> :vertical resize +5 <CR>
+nnoremap <F6> :resize -5 <CR>
+nnoremap <F7> :resize +5 <CR>
+nnoremap <F5> :vertical resize -5 <CR>
+nnoremap <F8> :vertical resize +5 <CR>
 
 set splitbelow              " Split pane opens below the current pane
 set splitright              " Split pane opens to the right of current pane
 
 " Git keybindings
 " <F2> through <F4> are git commands
-map <F2> :!git commit -a <CR> 
-map <F3> :!git pull --rebase <CR> <CR>
-map <F4> :!git push<CR> <CR>
+nmap <F2> :!git commit -a <CR> 
+nmap <F3> :!git pull --rebase <CR> <CR>
+nmap <F4> :!git push<CR> <CR>
 
 " Compile keybindings
 " <F9> through <F12> compile
-map <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
+nmap <F9> :make
+nmap <F10> :cw
+" nmap <F11> 
+nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq
 command! Q quit
