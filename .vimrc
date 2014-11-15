@@ -67,8 +67,8 @@ nmap <F4> :!git push<CR> <CR>
 
 " Compile keybindings
 " <F9> through <F12> compile
-nmap <F9> :make
-nmap <F10> :cw
+nmap <F9> :make <CR><CR>
+nmap <F10> :cw <CR>
 " nmap <F11> 
 nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
