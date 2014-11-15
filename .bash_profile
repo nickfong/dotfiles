@@ -10,8 +10,6 @@ export WHITE="\e[97m"
 
 export VISUAL=vim
 export EDITOR=vim
-export GIT_EDITOR=vim
-export GIT_VISUAL=vim
 
 # No need to type cd
 shopt -s autocd
@@ -27,14 +25,10 @@ export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export GREP_OPTIONS='--color=auto'
 
-# Custom Git Commands
-alias g='git'
-alias gitpush='git push github master'
-alias gitpull='git pull github master'
-alias gitcom='git commit'
-alias gitadd='git add -u'
-
 # Timesavers
+alias s='ssh'
+alias g='git'
+alias v='vim'
 alias reload='source ~/.bash_profile'
 alias rmspaces='find . -depth | rename " " "_" *'
 
