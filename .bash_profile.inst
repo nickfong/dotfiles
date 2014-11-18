@@ -24,5 +24,10 @@ fi
 if [ $USER == "cs150-an" ]; then
     cd ~/Project/fa14_team02
 fi
+if [ $USER == "cs199-afh" ]; then
+    # Manually remove elements from $PATH that account doesn't have read access
+    # to so git aliases work
+    export PATH=/usr/local/bin:/usr/bin:/bin:/usr/ucb/:/share/b/grading/bin:/share/b/bin
+fi
 ## end .bash_profile.inst ##
 

@@ -16,7 +16,7 @@ filetype indent plugin on       " filetype detection[ON] plugin[ON] indent[ON]
 set textwidth=80                " Wrap text at 80 chars 
 
 " Usability Settings
-"set autoread                   " Automatically refresh document has been modified elsewhere (doesn't work)
+set autoread                   " Automatically refresh document has been modified elsewhere (doesn't work)
 set nohlsearch                  " Don't continue to highlight searched phrases.
 set incsearch                   " But do highlight as you type your search.
 set hid                         " A buffer becomes hidden when it is abandoned
@@ -41,6 +41,9 @@ au BufRead,BufNewFile *.py setlocal shiftwidth=4 softtabstop=4 tabstop=4
 " Set spell check only for .tex and .txt files
 au BufRead,BufNewFile *.txt setlocal spell
 au BufRead,BufNewFile *.tex setlocal spell
+
+" Mark Trailing Whitespace as an error
+match ErrorMsg '\s\+$'
 
 " Change split mappings to make navigation easier (who needs screen now?)
 " <F5> through <F8> resize windows in normal mode
