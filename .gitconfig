@@ -1,0 +1,66 @@
+[color]
+    ui = true
+
+[user]
+	name = Nicholas Fong
+	email = Fong-@users.noreply.github.com
+
+[alias]
+    # Add
+    a = add
+    au = add -u
+    aa = add -A
+
+    # Commit
+    ci = commit
+    cm = commit -m
+    cam = commit -am
+    cia = commit --amend
+
+    # Info
+    st = status
+    sh = show
+    d = diff
+    lg = log -p
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
+	alias = config --get-regexp ^alias\\.
+    ign = ls-files -o -i --exclude-standard         # Ignored files
+
+    # Remotes
+    r = remote
+    rv = remote -v
+    ra = remote add
+    rrm = remote rm
+    rrn = remote rename
+
+    # Pull/push
+    pr = pull --rebase
+    p = push
+
+    # Change Working Dir
+    br = branch
+    co = checkout
+
+    # Set upstream
+    su = branch -u
+
+
+[core]
+	excludesfile = .gitignore_global
+    autocrlf = input
+    editor = vim
+
+[push]
+	default = current
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+    prompt = true
+
+[merge]
+	tool = vimdiff
+
