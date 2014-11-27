@@ -5,6 +5,7 @@ set ruler                       " Show info at bottom of screen
 set number                      " Line numbers
 syntax on                       " Syntax highlighting
 " set mouse=a                   " Use the mouse to scroll and Visual/VisLine mode
+set mouse=nicr                  " Hacky way to avoid resizing windows with scroll wheel
 
     " Tab and wrap settings
 set tabstop=4
@@ -49,11 +50,18 @@ match ErrorMsg '\s\+$'
 " <F5> through <F8> resize windows in normal mode
 " <F5> and <F8> resize width (HL)
 " <F6> and <F7> resize height (JK)
+" Arrow keys resize windows (up arrow increases height, down decreases, right
+" arrow increases width, left decreases)
 " C-[HJKL] jump between windows in any mode
-noremap <C-J> <C-W><C-J>
-noremap <C-K> <C-W><C-K>
-noremap <C-L> <C-W><C-L>
-noremap <C-H> <C-W><C-H>
+noremap <C-j> <C-W><C-J>
+noremap <C-k> <C-W><C-K>
+noremap <C-l> <C-W><C-L>
+noremap <C-h> <C-W><C-H>
+nnoremap <down> :resize -5 <CR>
+nnoremap <up> :resize +5 <CR>
+nnoremap <left> :vertical resize -5 <CR>
+nnoremap <Right> :vertical resize +5 <CR>
+
 nnoremap <F6> :resize -5 <CR>
 nnoremap <F7> :resize +5 <CR>
 nnoremap <F5> :vertical resize -5 <CR>
@@ -72,7 +80,7 @@ nmap <F4> :!git push<CR> <CR>
 " <F9> through <F12> compile
 nmap <F9> :make <CR><CR>
 nmap <F10> :cw <CR>
-" nmap <F11> 
+" nmap <F11>
 nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq
@@ -80,7 +88,13 @@ command! Q quit
 command! W write
 command! Wq wq
 
+" Automatically reload .vimrc
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
 "Abbrevations here
 "abbreviate [keyword] [expansion]
 
-"" end ~/.vimrc 
+"" end ~/.vimrc

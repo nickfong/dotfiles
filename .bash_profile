@@ -13,9 +13,9 @@ export EDITOR=vim
 
 # No need to type cd
 shopt -s autocd
-    
+
 # Set custom navigation/display
-alias ls='ls -GlhpF'
+alias ls='ls -GlhpF --color=auto'
 alias ll='ls -GalhpF'
 alias l='ls -GlhpF'
 alias ..='cd ..'
