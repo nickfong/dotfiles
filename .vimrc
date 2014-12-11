@@ -14,7 +14,7 @@ set softtabstop=4
 set autoindent
 set backspace=indent,eol,start
 filetype indent plugin on       " filetype detection[ON] plugin[ON] indent[ON]
-set textwidth=80                " Wrap text at 80 chars 
+set textwidth=80                " Wrap text at 80 chars
 
 " Usability Settings
 set autoread                   " Automatically refresh document has been modified elsewhere (doesn't work)
@@ -28,7 +28,7 @@ set showcmd                     " Show information about current command (e.g. n
 set confirm                     " Ask if changes should be saved
 set pastetoggle=<F12>           " Toggle paste:nopaste with <F12> when in insert mode
 set laststatus=2                " Persistent line status at bottom of screen
-set wildmenu                    " Enable menu at bottom of screen 
+set wildmenu                    " Enable menu at bottom of screen
 set wildmode=list:longest,full  " Show list of completions, longest common completed, then wildmenu
 
 " Set specific filetypes/indents based on extension
@@ -72,7 +72,7 @@ set splitright              " Split pane opens to the right of current pane
 
 " Git keybindings
 " <F2> through <F4> are git commands
-nmap <F2> :!git commit -a <CR> 
+nmap <F2> :!git commit -a <CR>
 nmap <F3> :!git pull --rebase <CR> <CR>
 nmap <F4> :!git push<CR> <CR>
 
@@ -82,6 +82,8 @@ nmap <F9> :make <CR><CR>
 nmap <F10> :cw <CR>
 " nmap <F11>
 nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
+
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq
 command! Q quit
@@ -93,6 +95,7 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
 
 "Abbrevations here
 "abbreviate [keyword] [expansion]
