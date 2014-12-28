@@ -24,6 +24,8 @@ alias ..='cd ..'
 export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export GREP_OPTIONS='--color=auto'
+alias grep="/usr/bin/grep $GREP_OPTIONS"
+unset GREP_OPTIONS
 
 # Timesavers
 alias s='ssh'
