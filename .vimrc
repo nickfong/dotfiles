@@ -90,6 +90,12 @@ command! Q quit
 command! W write
 command! Wq wq
 
+" Add python/bash/ruby comments faster
+" Also: block --> I --> # --> Esc
+vnoremap # :s#^#\##<cr>
+" Also: block --> x
+vnoremap -# :s#^\###<cr>
+
 " Automatically reload .vimrc
 augroup reload_vimrc " {
     autocmd!
