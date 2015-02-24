@@ -61,6 +61,14 @@ if [ -a ~/.bash_profile.inst ]; then
     SYSCOLOR=$BLUE
 fi
 
+# GNUPG Aliases
+alias gpgsign='gpg --sign --clearsign'
+alias gpgsignu='gpg --sign --clearsign -u'
+alias gpgdecrypt='gpg --decrypt'
+alias gpgverify='gpg --verify'
+alias gpgencrypt='gpg --armor --encrypt'
+alias gpgsym='gpg --armor --symmetric'
+
 # Custom prompt
 export PS1="\["$SYSCOLOR"\][\u@\[\e[0;31m\]\h\[\e[m\] \[\e[m\]\[\e[0;94m\]\W\[\e[m\]\["$SYSCOLOR"\]][\d \t]\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"
 export PS2="[\d \t] continue> "

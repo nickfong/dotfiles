@@ -96,12 +96,15 @@ vnoremap # :s#^#\##<cr>
 " Also: block --> x
 vnoremap -# :s#^\###<cr>
 
+" Enable j/k in long lines
+map j gj
+map k gk
+
 " Automatically reload .vimrc
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-
 
 "Abbrevations here
 "abbreviate [keyword] [expansion]
