@@ -81,9 +81,12 @@ nmap <F4> :!git push<CR> <CR>
 nmap <F9> :make <CR><CR>
 nmap <F10> :cw <CR>
 " nmap <F11>
+nmap <F11> :set wrap!<CR>
 nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
-nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+" Automatically remove trailing whitespace before saving
+autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
+"nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq
 command! Q quit
@@ -108,5 +111,6 @@ augroup END " }
 
 "Abbrevations here
 "abbreviate [keyword] [expansion]
+abbreviate tt \texttt{
 
 "" end ~/.vimrc
