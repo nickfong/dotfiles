@@ -85,7 +85,7 @@ man() {
 }
 
 # Source RVM if it exists
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && export PATH="$PATH:$HOME/.rvm/bin"
 
 ## end .bash_profile ##
 
