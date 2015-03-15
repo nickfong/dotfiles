@@ -42,9 +42,9 @@
     # Branches
     br = branch
     co = checkout
-    brlrm = git branch -d                           # branch local rm
-    brlrmf = git branch -D                          # branch local rm, force
-    brrrm = git push origin --delete                # branch remote rm
+    brlrm = branch -d                               # branch local rm
+    brlrmf = branch -D                              # branch local rm, force
+    brrrm = push origin --delete                    # branch remote rm
 
     # Set upstream
     su = branch -u
