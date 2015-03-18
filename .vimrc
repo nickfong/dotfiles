@@ -76,17 +76,17 @@ nmap <F2> :!git commit -a <CR>
 nmap <F3> :!git pull --rebase <CR> <CR>
 nmap <F4> :!git push<CR> <CR>
 
+" Miscellaneous Keybindings
+nmap <F5> :set wrap!<CR>
+
 " Compile keybindings
-" <F9> through <F12> compile
 nmap <F9> :make <CR><CR>
 nmap <F10> :cw <CR>
-" nmap <F11>
-nmap <F11> :set wrap!<CR>
 nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
 " Automatically remove trailing whitespace before saving
 autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
-"nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq
 command! Q quit
