@@ -1,0 +1,12 @@
+[Desktop Entry]
+# This file should be symlinked to ~/.local/share/applications/vim.desktop to
+# enable opening of plain text files in VIM from Nautilus
+Name=VIM
+Comment=Edit files in VIM
+Exec=vim %F
+Terminal=true
+Type=Application
+Icon=vim
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;

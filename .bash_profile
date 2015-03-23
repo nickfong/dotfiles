@@ -87,5 +87,49 @@ man() {
 # Source RVM if it exists
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && export PATH="$PATH:$HOME/.rvm/bin"
 
+# Arch Linux Specific
+if hash pacman 2>/dev/null; then
+    BASE="/home/$USER/Dropbox/Sync/script"
+    alias dbx="$BASE/dropbox.py"
+    alias sdbx="sudo sysctl -p; $BASE/dropbox.py"
+
+    alias sgdm="sudo systemctl start gdm"
+
+    alias syu='sudo pacman -Syu'
+    alias rs='sudo pacman -rs'
+
+    alias archstart="sudo sysctl -p; $BASE/dropbox.py start; sudo pacman -Syu"
+
+    export PATH=$PATH:$BASE
+fi
+
+function open() {
+    test $# -lt 1 && echo "Too few arguments"
+    test $# -gt 1 && echo "Too many arguments"
+    EXTENSION=${1#*.}
+    case ${EXTENSION,,} in
+        pdf)
+            evince "$1"
+            ;;
+        jpg)
+            if hash eog 2>/dev/null; then
+                eog "$1"
+            else
+                xdg-open "$1"
+            fi
+            ;;
+        png)
+            if hash eog 2>/dev/null; then
+                eog "$1"
+            else
+                xdg-open "$1"
+            fi
+            ;;
+        *)
+            xdg-open "$1"
+            ;;
+    esac
+}
+
 ## end .bash_profile ##
 
