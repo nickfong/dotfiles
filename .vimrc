@@ -1,13 +1,11 @@
 "" begin ~/.vimrc
 
 let mapleader = "\<Space>"      " Set Leader to be a space
-nnoremap <SPACE> <Nop>          " NOP space so it doesn't map to right
 
 set background=dark             " Terminal has dark background
 set ruler                       " Show info at bottom of screen
 set number                      " Line numbers
 syntax on                       " Syntax highlighting
-" set mouse=a                   " Use the mouse to scroll and Visual/VisLine mode
 set mouse=nicr                  " Hacky way to avoid resizing windows with scroll wheel
 
 " Tab and wrap settings
@@ -34,7 +32,8 @@ set laststatus=2                " Persistent line status at bottom of screen
 set wildmenu                    " Enable menu at bottom of screen
 set wildmode=list:longest,full  " Show list of completions, longest common completed, then wildmenu
 set cursorline                  " Display a line beneath the cursor's current line
-set nobackup                    " No .swp file
+"set swapfile                    " Set a swapfile
+"set dir=~/tmp                   " But have it write to ~/tmp instead of the current working directory
 
 " Set specific filetypes/indents based on extension
 au BufRead,BufNewFile *.java setl shiftwidth=4 softtabstop=4 tabstop=4
@@ -109,7 +108,9 @@ map k gk
 nnoremap H 0
 nnoremap L $
 
-" Make saving faster
+" Make saving and quitting faster
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>w :w<CR>
 
 " Automatically reload .vimrc
