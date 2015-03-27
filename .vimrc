@@ -97,8 +97,8 @@ vnoremap # :s#^#\##<cr>
 " Also: block --> x
 vnoremap -# :s#^\###<cr>
 " Same thing for LaTeX
-vnoremap % :s#^#\##<cr>
-vnoremap -% :s#^\###<cr>
+vnoremap % :s%^%\%%<cr>
+vnoremap -% :s%^\%%%<cr>
 
 " Enable j/k in long lines
 map j gj
