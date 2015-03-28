@@ -69,27 +69,23 @@ set splitright              " Split pane opens to the right of current pane
 
 " Git keybindings
 " <F2> through <F4> are git commands
-nmap <F2> :!git commit -a <CR>
-nmap <F3> :!git pull --rebase <CR> <CR>
-nmap <F4> :!git push<CR> <CR>
+nnoremap <F2> :!git commit -a <CR>
+nnoremap <F3> :!git pull --rebase <CR> <CR>
+nnoremap <F4> :!git push<CR> <CR>
 
 " Miscellaneous Keybindings
-nmap <F5> :set wrap!<CR>
+nnoremap <F5> :set wrap!<CR>
 
 " Compile keybindings
-nmap <F9> :make <CR><CR>
-nmap <F10> :cw <CR>
-nmap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
+nnoremap <F9> :make <CR><CR>
+nnoremap <F10> :cw <CR>
+nnoremap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
-" Automatically remove trailing whitespace before saving
-"autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd BufWritePre <buffer> :%s/\s\+$//e
-nnoremap <Leader>rtw :%s/\s\+$//e<CR>
-
-" Map :Q to :q, :W to :w, and :Wq to :wq
+" Map :Q to :q, :W to :w, and :Wq to :wq, ignore q: typo
 command! Q quit
 command! W write
 command! Wq wq
+map q: :q
 
 " Add python/bash/ruby comments faster
 " Also: block --> I --> # --> Esc
@@ -107,11 +103,37 @@ map k gk
 " Map H to BOL and L to EOL
 nnoremap H 0
 nnoremap L $
+" Leader-Related Shortcuts
+
+" Automatically remove trailing whitespace before saving
+"autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufWritePre <buffer> :%s/\s\+$//e
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " Make saving and quitting faster
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>w :w<CR>
+
+" Use the system clipboard for copying and pasting by prefixing with Leader
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+
+" Delete
+nnoremap <Leader>d dd
+
+" Pair completion for curly braces
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+" Pair completion for parens
+inoremap (      ()<Left>
 
 " Automatically reload .vimrc
 augroup reload_vimrc " {
@@ -136,15 +158,6 @@ au InsertLeave * hi statusline guibg=green
 
 " default the statusline to green when entering Vim
 hi statusline guibg=green
-
-" Pair completion for curly braces
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-
-" Pair completion for parens
-inoremap (      ()<Left>
 
 "Abbrevations here
 "abbreviate [keyword] [expansion]
