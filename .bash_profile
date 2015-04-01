@@ -13,7 +13,6 @@ export EDITOR=vim
 
 # No need to type cd
 shopt -s autocd
-
 # Set custom navigation/display
 alias ls='ls -GlhpF --color=auto'
 alias ll='ls -GalhpF'
@@ -96,9 +95,13 @@ if hash pacman 2>/dev/null; then
     alias sgdm="sudo systemctl start gdm"
 
     alias syu='sudo pacman -Syu'
-    alias rs='sudo pacman -rs'
+    alias rs='sudo pacman -Rs'
 
     alias archstart="sudo sysctl -p; $BASE/dropbox.py start; sudo pacman -Syu"
+
+    if hash redshift; then
+        alias redshift='redshift -l 40:124'
+    fi
 
     export PATH=$PATH:$BASE
 fi
