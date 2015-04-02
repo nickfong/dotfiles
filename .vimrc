@@ -1,7 +1,6 @@
 "" begin ~/.vimrc
 
 let mapleader = "\<Space>"      " Set Leader to be a space
-
 set background=dark             " Terminal has dark background
 set ruler                       " Show info at bottom of screen
 set number                      " Line numbers
@@ -42,6 +41,7 @@ au BufRead,BufNewFile *.txt setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au BufRead,BufNewFile *.tex setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.py setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.rb setlocal shiftwidth=4 softtabstop=4 tabstop=4
+au BufNewFile,BufRead *.coffee set filetype=javascript
 
 " Set automatic enabling of spell check only for .tex, .txt, and .md files
 au BufRead,BufNewFile *.txt setlocal spell
@@ -126,6 +126,9 @@ vnoremap <Leader>P "+P
 " Delete
 nnoremap <Leader>d dd
 
+" Duplicate line
+nnoremap <Leader>j Vyp
+
 " Pair completion for curly braces
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
@@ -140,24 +143,6 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-
-" Statusline Related Settings
-function! InsertStatuslineColor(mode)
-    if a:mode == 'i'
-        hi statusline guibg=yellow
-    elseif a:mode == 'r'
-        hi statusline guibg=blue
-    else
-        hi statusline guibg=red
-    endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertChange * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=green
-
-" default the statusline to green when entering Vim
-hi statusline guibg=green
 
 "Abbrevations here
 "abbreviate [keyword] [expansion]
