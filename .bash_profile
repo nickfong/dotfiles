@@ -38,14 +38,14 @@ alias gpgsym='gpg --armor --symmetric'
 
 # Set colors if available
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    BLACK="\e[90m"
-    RED="\e[31m"
-    GREEN="\e[92m"
-    YELLOW="\e[93m"
-    BLUE="\e[94m"
-    MAGENTA="\e[95m"
-    CYAN="\e[96m"
-    WHITE="\e[97m"
+    BLACK="\e[1;90m"
+    RED="\e[1;31m"
+    GREEN="\e[1;92m"
+    YELLOW="\e[1;93m"
+    BLUE="\e[1;94m"
+    MAGENTA="\e[1;95m"
+    CYAN="\e[1;96m"
+    WHITE="\e[1;97m"
 
     SYSCOLOR=$GREEN
 
@@ -75,6 +75,10 @@ else
     GIT_CLEAN=
     GIT_DIRTY=
 fi
+
+change_color() {
+    echo "\[$1\]"
+}
 
 git_branch() {
     if ! git rev-parse --git-dir > /dev/null 2>&1; then
@@ -112,12 +116,11 @@ last_char() {
 
 make_prompt() {
     EXIT=$?
-    USER_HOST_PATH="\[$SYSCOLOR\][\u\[$RED\]@\h\[\e[m\]\[\e[m\]\[$BLUE\]:\W\[\e[m\]\[$SYSCOLOR\]]"
+    USER_HOST_PATH="$(change_color $SYSCOLOR)[\u$(change_color $RED)@\h$(change_color $BLUE):\W$(change_color $SYSCOLOR)]"
     DATE_TIME="[\D{%Y%m%d %H:%M:%S}]"
     WHITE="\[\033[01;37m\]"
     echo "$USER_HOST_PATH$DATE_TIME$(git_branch)$(last_char $EXIT)$WHITE"
 }
-# Shell prompt
 
 PROMPT_COMMAND='PS1=$(make_prompt)'
 export PS2="[\d \t] continue> "
