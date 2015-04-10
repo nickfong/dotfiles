@@ -4,11 +4,11 @@ export EDITOR=vim
 
 # No need to type cd
 shopt -s autocd
+
 # Set custom navigation/display
 alias ls='ls -GlhpF --color=auto'
 alias ll='ls -GalhpF'
 alias l='ls -GlhpF'
-alias ..='cd ..'
 
 # Set colors for ls and grep
 export CLICOLOR=1
@@ -77,24 +77,49 @@ else
 fi
 
 git_branch() {
-  if ! git rev-parse --git-dir > /dev/null 2>&1; then
-    return 0
-  fi
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+      return 0
+    fi
 
-  git_br=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
+    GIT_BR=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
 
-  if git diff --quiet 2>/dev/null >&2; then
-    git_color="$GIT_CLEAN"
-  else
-    git_color="$GIT_DIRTY"
-  fi
+    if git diff --quiet 2>/dev/null >&2; then
+      GIT_COLOR="$GIT_CLEAN"
+    else
+      GIT_COLOR="$GIT_DIRTY"
+    fi
 
-  echo "$git_color($git_br)"
+    echo "\[$GIT_COLOR\]($GIT_BR)"
 }
 
+# Takes in the exit code of the last run command as $1
+last_char() {
+    EXIT=$1
+    # Get the right char
+    if [[ $EUID -ne 0 ]]; then
+        CHAR="\342\235\261"
+    else
+        CHAR="#"
+    fi
+    # Get the right color
+    if [[ $EXIT == 0 ]]; then
+        COLOR=$GREEN
+    else
+        COLOR=$RED
+    fi
+    echo "\[$COLOR\]$CHAR "
+}
+
+make_prompt() {
+    EXIT=$?
+    USER_HOST_PATH="\[$SYSCOLOR\][\u\[$RED\]@\h\[\e[m\]\[\e[m\]\[$BLUE\]:\W\[\e[m\]\[$SYSCOLOR\]]"
+    DATE_TIME="[\D{%Y%m%d %H:%M:%S}]"
+    WHITE="\[\033[01;37m\]"
+    echo "$USER_HOST_PATH$DATE_TIME$(git_branch)$(last_char $EXIT)$WHITE"
+}
 # Shell prompt
-PROMPT_COMMAND='PS1="\["$SYSCOLOR"\][\u\[\e[0;31m\]@\h\[\e[m\]\[\e[m\]\[\e[0;94m\]:\W\[\e[m\]\["$SYSCOLOR"\]][\D{%Y%m%d %H:%M:%S}]$(git_branch)\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"'
-#export PS1="\["$SYSCOLOR"\][\u\[\e[0;31m\]@\h\[\e[m\]\[\e[m\]\[\e[0;94m\]:\W\[\e[m\]\["$SYSCOLOR"\]][\D{%Y%m%d %H:%M:%S}]\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"
+
+PROMPT_COMMAND='PS1=$(make_prompt)'
 export PS2="[\d \t] continue> "
 
 man() {
