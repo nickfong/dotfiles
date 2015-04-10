@@ -1,13 +1,4 @@
 ## begin .bash_profile ##
-export BLACK="\e[90m"
-export RED="\e[31m"
-export GREEN="\e[92m"
-export YELLOW="\e[93m"
-export BLUE="\e[94m"
-export MAGENTA="\e[95m"
-export CYAN="\e[96m"
-export WHITE="\e[97m"
-
 export VISUAL=vim
 export EDITOR=vim
 
@@ -37,29 +28,6 @@ alias rmspaces='find . -depth | rename " " "_" *'
 alias csharescreen='screen -dmS sharedscreen'
 alias sharescreen='screen -x sharedscreen'
 
-# Green Prompt
-SYSCOLOR=$GREEN
-
-if [ -a ~/.bash_profile.personal ]; then
-    source ~/.bash_profile.personal
-    SYSCOLOR=$CYAN
-fi
-
-if [ -a ~/.bash_profile.ocf ]; then
-    source ~/.bash_profile.ocf
-    SYSCOLOR=$WHITE
-fi
-
-if [ -a ~/.bash_profile.nersc ]; then
-    source ~/.bash_profile.nersc
-    SYSCOLOR=$RED
-fi
-
-if [ -a ~/.bash_profile.inst ]; then
-    source ~/.bash_profile.inst
-    SYSCOLOR=$BLUE
-fi
-
 # GNUPG Aliases
 alias gpgsign='gpg --sign --clearsign'
 alias gpgsignu='gpg --sign --clearsign -u'
@@ -68,8 +36,65 @@ alias gpgverify='gpg --verify'
 alias gpgencrypt='gpg --armor --encrypt'
 alias gpgsym='gpg --armor --symmetric'
 
-# Custom prompt
-export PS1="\["$SYSCOLOR"\][\u\[\e[0;31m\]@\h\[\e[m\]\[\e[m\]\[\e[0;94m\]:\W\[\e[m\]\["$SYSCOLOR"\]][\D{%Y%m%d %H:%M:%S}]\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"
+# Set colors if available
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    BLACK="\e[90m"
+    RED="\e[31m"
+    GREEN="\e[92m"
+    YELLOW="\e[93m"
+    BLUE="\e[94m"
+    MAGENTA="\e[95m"
+    CYAN="\e[96m"
+    WHITE="\e[97m"
+
+    SYSCOLOR=$GREEN
+
+    if [ -a ~/.bash_profile.personal ]; then
+        source ~/.bash_profile.personal
+        SYSCOLOR=$CYAN
+    fi
+
+    if [ -a ~/.bash_profile.ocf ]; then
+        source ~/.bash_profile.ocf
+        SYSCOLOR=$WHITE
+    fi
+
+    if [ -a ~/.bash_profile.nersc ]; then
+        source ~/.bash_profile.nersc
+        SYSCOLOR=$RED
+    fi
+
+    if [ -a ~/.bash_profile.inst ]; then
+        source ~/.bash_profile.inst
+        SYSCOLOR=$BLUE
+    fi
+    GIT_CLEAN=$GREEN
+    GIT_DIRTY=$RED
+else
+    SYSCOLOR=
+    GIT_CLEAN=
+    GIT_DIRTY=
+fi
+
+git_branch() {
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    return 0
+  fi
+
+  git_br=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
+
+  if git diff --quiet 2>/dev/null >&2; then
+    git_color="$GIT_CLEAN"
+  else
+    git_color="$GIT_DIRTY"
+  fi
+
+  echo "$git_color($git_br)"
+}
+
+# Shell prompt
+PROMPT_COMMAND='PS1="\["$SYSCOLOR"\][\u\[\e[0;31m\]@\h\[\e[m\]\[\e[m\]\[\e[0;94m\]:\W\[\e[m\]\["$SYSCOLOR"\]][\D{%Y%m%d %H:%M:%S}]$(git_branch)\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"'
+#export PS1="\["$SYSCOLOR"\][\u\[\e[0;31m\]@\h\[\e[m\]\[\e[m\]\[\e[0;94m\]:\W\[\e[m\]\["$SYSCOLOR"\]][\D{%Y%m%d %H:%M:%S}]\["$SYSCOLOR"\]\[\e[m\]\$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$\"; else echo \"\[\033[01;31m\]\$\"; fi) \[\033[01;37m\]"
 export PS2="[\d \t] continue> "
 
 man() {

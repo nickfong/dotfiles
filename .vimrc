@@ -6,6 +6,7 @@ set ruler                       " Show info at bottom of screen
 set number                      " Line numbers
 syntax on                       " Syntax highlighting
 set mouse=nicr                  " Hacky way to avoid resizing windows with scroll wheel
+colorscheme delek
 
 " Tab and wrap settings
 set tabstop=4
@@ -31,6 +32,8 @@ set laststatus=2                " Persistent line status at bottom of screen
 set wildmenu                    " Enable menu at bottom of screen
 set wildmode=list:longest,full  " Show list of completions, longest common completed, then wildmenu
 set cursorline                  " Display a line beneath the cursor's current line
+set nowrap                      " Let lines trail off the edge of the terminal without wrapping
+
 "set swapfile                    " Set a swapfile
 "set dir=~/tmp                   " But have it write to ~/tmp instead of the current working directory
 
@@ -70,11 +73,22 @@ set splitright              " Split pane opens to the right of current pane
 " Git keybindings
 " <F2> through <F4> are git commands
 nnoremap <F2> :!git commit -a <CR>
-nnoremap <F3> :!git pull --rebase <CR> <CR>
+nnoremap <F3> :!git pull --rebase <CR> <CR>:e<CR><CR>
 nnoremap <F4> :!git push<CR> <CR>
+
+function! ToggleNumber()
+    if(&relativenumber == 1)
+        set norelativenumber
+        set number
+    else
+        set relativenumber
+    endif
+endfunc
 
 " Miscellaneous Keybindings
 nnoremap <F5> :set wrap!<CR>
+"nooremap <F7> :call ToggleNumber()
+"nooremap <F7> :set norelativenumber<CR>
 
 " Compile keybindings
 nnoremap <F9> :make <CR><CR>
@@ -109,6 +123,8 @@ nnoremap L $
 "autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd BufWritePre <buffer> :%s/\s\+$//e
 nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+" Show tabs in file so they can be expunged
+set list listchars=tab:\ \ ,trail:·
 
 " Make saving and quitting faster
 nnoremap <Leader>w :w<CR>
