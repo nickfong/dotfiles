@@ -46,6 +46,9 @@
     brlrmf = branch -D                              # branch local rm, force
     brrrm = push origin --delete                    # branch remote rm
 
+    # Rebase
+    ri = rebase -i
+
     # Set upstream
     su = branch -u
 
