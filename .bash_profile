@@ -108,10 +108,12 @@ last_char() {
     # Get the right color
     if [[ $EXIT == 0 ]]; then
         COLOR=$GREEN
+        NON_ZERO=
     else
         COLOR=$RED
+        NON_ZERO="($EXIT)"
     fi
-    echo "\[$COLOR\]$CHAR "
+    echo "\[$COLOR\]$NON_ZERO$CHAR "
 }
 
 make_prompt() {
