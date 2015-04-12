@@ -5,14 +5,15 @@ export EDITOR=vim
 # No need to type cd
 shopt -s autocd
 
+export HISTTIMEFORMAT='%F %T '  # Show timestamps with histoyr
+export HISTCONTROL=ignorespace  # Prepend command w/space to omit from history
+
 # Set custom navigation/display
 alias ls='ls -GlhpF --color=auto'
 alias ll='ls -GalhpF'
 alias l='ls -GlhpF'
 
-# Set colors for ls and grep
-export CLICOLOR=1
-export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+# Set colors for grep
 export GREP_OPTIONS='--color=auto'
 alias grep="$(which grep) $GREP_OPTIONS"
 unset GREP_OPTIONS
@@ -38,6 +39,42 @@ alias gpgsym='gpg --armor --symmetric'
 
 # Set colors if available
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # Set colors for ls
+    DEFAULT=0
+    BOLD=1
+    UNDERLINE=4
+    FLASHING=5
+    REVERSE=7
+
+    RED=31
+    GREEN=32
+    ORANGE=33
+    BLUE=34
+    PURPLE=35
+    CYAN=36
+    GREY=37
+    DARK_GREY=90
+    LIGHT_RED=91
+    LIGHT_GREEN=92
+    YELLOW=93
+    LIGHT_BLUE=94
+    LIGHT_PURPLE=95
+    TURQUOISE=96
+
+    DIRECTORY='di'
+    FILE='fi'
+    SYMLINK='ln'
+    FIFO='pi'
+    SOCKET='so'
+    BLOCK='bd'
+    CHAR='cd'
+    ORPHAN='or'
+    MISSING='mi'
+    EXECUTABLE='ex'
+    export CLICOLOR=1
+    export LSCOLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
+
+    # Set colors for shell prompt
     BLACK="\e[1;90m"
     RED="\e[1;31m"
     GREEN="\e[1;92m"
@@ -81,7 +118,7 @@ change_color() {
 }
 
 git_branch() {
-    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    if hash git 2>/dev/null && ! git rev-parse --git-dir > /dev/null 2>&1; then
       return 0
     fi
 
