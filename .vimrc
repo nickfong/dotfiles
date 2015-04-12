@@ -1,5 +1,8 @@
 "" begin ~/.vimrc
 
+scriptencoding utf-8
+set encoding=utf-8
+
 let mapleader = "\<Space>"      " Set Leader to be a space
 set background=dark             " Terminal has dark background
 set ruler                       " Show info at bottom of screen
