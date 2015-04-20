@@ -40,7 +40,7 @@ set nowrap                      " Let lines trail off the edge of the terminal w
 "set swapfile                    " Set a swapfile
 "set dir=~/tmp                   " But have it write to ~/tmp instead of the current working directory
 
-" Set specific filetypes/indents based on extension
+" Filetype-specific settings
 au BufRead,BufNewFile *.java setl shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.c setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.txt setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -48,6 +48,7 @@ au BufRead,BufNewFile *.tex setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.py setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.rb setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufNewFile,BufRead *.coffee set filetype=javascript
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Set automatic enabling of spell check only for .tex, .txt, and .md files
 au BufRead,BufNewFile *.txt setlocal spell
@@ -127,7 +128,7 @@ nnoremap L $
 autocmd BufWritePre <buffer> :%s/\s\+$//e
 nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 " Show tabs in file so they can be expunged
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:»·,trail:·
 
 " Make saving and quitting faster
 nnoremap <Leader>w :w<CR>
