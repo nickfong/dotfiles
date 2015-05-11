@@ -24,12 +24,12 @@
     lg = log -p
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration
     ls = ls-files
 	alias = config --get-regexp ^alias\\.
     ign = ls-files -o -i --exclude-standard         # Ignored files
 
     # Remotes
-    r = remote
     rv = remote -v
     ra = remote add
     rrm = remote rm
@@ -47,8 +47,13 @@
     brrrm = push origin --delete                    # branch remote rm
     bp = fetch -p                                   # prune branches deleted from origin
 
-    # Rebase
+    # Rebase/Merge
+    r = rebase
     ri = rebase -i
+    rc = rebase --continue
+    ra = rebase --abort
+    mt = mergetool
+    mnf = merge --no-ff
 
     # Set upstream
     su = branch -u
