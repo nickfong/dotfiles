@@ -48,6 +48,7 @@ au BufRead,BufNewFile *.tex setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.py setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.rb setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufNewFile,BufRead *.coffee set filetype=javascript
+au BufNewFile,BufRead *.cls set filetype=plaintex
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Set automatic enabling of spell check only for .tex, .txt, and .md files
