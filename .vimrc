@@ -151,13 +151,13 @@ nnoremap <Leader>d dd
 nnoremap <Leader>j Vyp
 
 " Pair completion for curly braces
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
+"inoremap {      {}<Left>
+"inoremap {<CR>  {<CR>}<Esc>O
+"inoremap {{     {
+"inoremap {}     {}
 
 " Pair completion for parens
-inoremap (      ()<Left>
+"inoremap (      ()<Left>
 
 " Automatically reload .vimrc
 augroup reload_vimrc " {
