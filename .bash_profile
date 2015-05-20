@@ -2,16 +2,26 @@
 export VISUAL=vim
 export EDITOR=vim
 
-# No need to type cd
-shopt -s autocd
+case $(uname) in
+    "Linux")
+        # No need to type cd
+        shopt -s autocd
 
-export HISTTIMEFORMAT='%F %T '  # Show timestamps with histoyr
-export HISTCONTROL=ignorespace  # Prepend command w/space to omit from history
+        export HISTTIMEFORMAT='%F %T '  # Show timestamps with histoyr
+        export HISTCONTROL=ignorespace  # Prepend command w/space to omit from history
 
-# Set custom navigation/display
-alias ls='ls -GlhpF --color=auto'
-alias ll='ls -GalhpF'
-alias l='ls -GlhpF'
+        # Set custom navigation/display
+        alias ls='ls -GlhpF --color=auto'
+        alias ll='ls -GalhpF'
+        alias l='ls -GlhpF'
+        ;;
+    "Darwin")
+        # Set custom navigation/display
+        alias ls='ls -GlhpF'
+        alias ll='ls -GalhpF'
+        alias l='ls -GlhpF'
+        ;;
+esac
 
 # Set colors for grep
 export GREP_OPTIONS='--color=auto'
