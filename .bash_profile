@@ -209,7 +209,7 @@ if hash pacman 2>/dev/null; then
 
     alias archstart="sudo sysctl -p; $BASE/dropbox.py start; sudo pacman -Syu"
 
-    if hash redshift; then
+    if hash redshift 2>/dev/null; then
         alias redshift='redshift -l 40:124'
     fi
 
