@@ -171,12 +171,11 @@ make_prompt() {
     WHITE="\[\033[01;37m\]"
     LONG_PROMPT="$LONG_USER_HOST_PATH$DATE_TIME$(git_branch)\n$(last_char $EXIT)$WHITE"
     SHORT_PROMPT="$SHORT_USER_HOST_PATH$DATE_TIME$(git_branch)\n$(last_char $EXIT)$WHITE"
-#    if [[ ${#LONG_PROMPT} -lt $(tput cols) ]]; then
-#        echo "$LONG_PROMPT"
-#    else
-#        echo "$SHORT_PROMPT"
-#    fi
-    echo "$LONG_PROMPT"
+    if [[ ${#LONG_PROMPT} -lt $(tput cols) ]]; then
+        echo "$LONG_PROMPT"
+    else
+        echo "$SHORT_PROMPT"
+    fi
 }
 
 PROMPT_COMMAND='PS1=$(make_prompt)'
