@@ -51,6 +51,7 @@
     # Rebase/Merge
     r = rebase
     ri = rebase -i
+    ri2 = rebase -i HEAD~2
     rc = rebase --continue
     ra = rebase --abort
     mt = mergetool
