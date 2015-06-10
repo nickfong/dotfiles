@@ -215,6 +215,10 @@ if hash pacman 2>/dev/null; then
         alias redshift='redshift -l 40:124'
     fi
 
+    if hash vboxreload 2>/dev/null; then
+        alias vbox='sudo vboxreload'
+    fi
+
     export PATH=$PATH:$BASE
 fi
 
