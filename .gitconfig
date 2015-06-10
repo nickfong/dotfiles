@@ -64,6 +64,7 @@
     excludesfile = .gitignore_global
 	autocrlf = input
     editor = vim
+	pager = less -R
 
 [push]
 	default = current
