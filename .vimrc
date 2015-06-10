@@ -37,6 +37,8 @@ set wildmode=list:longest,full  " Show list of completions, longest common compl
 set cursorline                  " Display a line beneath the cursor's current line
 set nowrap                      " Let lines trail off the edge of the terminal without wrapping
 
+set printoptions=paper:letter,duplex:on
+
 "set swapfile                    " Set a swapfile
 "set dir=~/tmp                   " But have it write to ~/tmp instead of the current working directory
 
