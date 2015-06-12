@@ -43,6 +43,7 @@
     # Branches
     br = branch
     co = checkout
+    cob = checkout -b
     brlrm = branch -d                               # branch local rm
     brlrmf = branch -D                              # branch local rm, force
     brrrm = push origin --delete                    # branch remote rm
