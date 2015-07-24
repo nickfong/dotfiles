@@ -79,6 +79,7 @@ set splitright              " Split pane opens to the right of current pane
 
 " Git keybindings
 " <F2> through <F4> are git commands
+nnoremap <F1> :!git diff<CR>
 nnoremap <F2> :!git commit -a <CR>
 nnoremap <F3> :!git pull --rebase <CR> <CR>:e<CR><CR>
 nnoremap <F4> :!git push<CR> <CR>

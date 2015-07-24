@@ -47,6 +47,10 @@ alias gpgverify='gpg --verify'
 alias gpgencrypt='gpg --armor --encrypt'
 alias gpgsym='gpg --armor --symmetric'
 
+# SSH Tunnel
+alias sshtunnel='ssh -ND'
+alias tunnelchromium='/usr/bin/chromium --proxy-server="socks5://localhost:1080"'
+
 # Set colors if available
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     # Set colors for ls
@@ -160,7 +164,7 @@ last_char() {
         COLOR=$RED
         NON_ZERO="($EXIT)"
     fi
-    echo "\[$COLOR\]$NON_ZERO$CHAR "
+    echo "\[$COLOR\][\!]\n$NON_ZERO$CHAR "
 }
 
 make_prompt() {
@@ -169,8 +173,8 @@ make_prompt() {
     SHORT_USER_HOST_PATH="$(change_color $SYSCOLOR)[\u$(change_color $RED)@\h$(change_color $BLUE):\W$(change_color $SYSCOLOR)]"
     DATE_TIME="[\D{%Y-%m-%d %H:%M:%S}]"
     WHITE="\[\033[01;37m\]"
-    LONG_PROMPT="$LONG_USER_HOST_PATH$DATE_TIME$(git_branch)\n$(last_char $EXIT)$WHITE"
-    SHORT_PROMPT="$SHORT_USER_HOST_PATH$DATE_TIME$(git_branch)\n$(last_char $EXIT)$WHITE"
+    LONG_PROMPT="$LONG_USER_HOST_PATH$DATE_TIME$(git_branch)$(last_char $EXIT)$WHITE"
+    SHORT_PROMPT="$SHORT_USER_HOST_PATH$DATE_TIME$(git_branch)$(last_char $EXIT)$WHITE"
     if [[ ${#LONG_PROMPT} -lt $(tput cols) ]]; then
         echo "$LONG_PROMPT"
     else

@@ -12,6 +12,7 @@
     aa = add -A
 
     # Commit
+    ca = commit -a
     ci = commit
     cm = commit -m
     cam = commit -am
