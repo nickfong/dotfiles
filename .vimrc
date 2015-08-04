@@ -84,14 +84,16 @@ nnoremap <F2> :!git commit -a <CR>
 nnoremap <F3> :!git pull --rebase <CR> <CR>:e<CR><CR>
 nnoremap <F4> :!git push<CR> <CR>
 
-function! ToggleNumber()
+" Toggle relative or absolute line numbers with Control-n
+function! NumberToggle()
     if(&relativenumber == 1)
-        set norelativenumber
-        set number
+        set relativenumber!
     else
         set relativenumber
     endif
 endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " Miscellaneous Keybindings
 nnoremap <F5> :set wrap!<CR>
