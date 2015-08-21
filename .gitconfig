@@ -2,8 +2,8 @@
     ui = true
 
 [user]
-	name = Nicholas Fong
-	email = Fong-@users.noreply.github.com
+    name = Nicholas Fong
+    email = nickfong@users.noreply.github.com
 
 [alias]
     # Add
@@ -28,7 +28,7 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration
     ls = ls-files
-	alias = config --get-regexp ^alias\\.
+    alias = config --get-regexp ^alias\\.
     ign = ls-files -o -i --exclude-standard         # Ignored files
 
     # Remotes
@@ -64,19 +64,19 @@
 
 [core]
     excludesfile = .gitignore_global
-	autocrlf = input
+    autocrlf = input
     editor = vim
-	pager = less -R
+    pager = less -R
 
 [push]
-	default = current
+    default = current
 
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 
 [difftool]
     prompt = true
 
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 
