@@ -85,8 +85,10 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     ORPHAN='or'
     MISSING='mi'
     EXECUTABLE='ex'
-    export CLICOLOR=1
-    export LSCOLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
+    if [ $(uname) == "Linux" ]; then
+        export CLICOLOR=1
+        export LSCOLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
+    fi
 
     # Set colors for shell prompt
     BLACK="\e[1;90m"
@@ -227,6 +229,9 @@ if hash pacman 2>/dev/null; then
 fi
 
 function open() {
+    if hash open 2>/dev/null; then
+        open "$1"
+    fi
     test $# -lt 1 && echo "Too few arguments"
     test $# -gt 1 && echo "Too many arguments"
     EXTENSION=${1#*.}
