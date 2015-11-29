@@ -228,6 +228,11 @@ if hash pacman 2>/dev/null; then
     export PATH=$PATH:$BASE
 fi
 
+if hash jekyll 2>/dev/null; then
+    alias js="jekyll serve --watch"
+    alias jsd="jekyll serve --watch --draft"
+fi
+
 function open() {
     if hash open 2>/dev/null; then
         open "$1"

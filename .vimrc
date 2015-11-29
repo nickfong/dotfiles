@@ -1,7 +1,14 @@
 "" begin ~/.vimrc
 
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+
+set timeoutlen=100              " Compromise between airline and leader timeout
+
 scriptencoding utf-8
 set encoding=utf-8
+set t_Co=256
 
 let mapleader = "\<Space>"      " Set Leader to be a space
 set background=dark             " Terminal has dark background
@@ -9,7 +16,7 @@ set ruler                       " Show info at bottom of screen
 set number                      " Line numbers
 syntax on                       " Syntax highlighting
 set mouse=nicr                  " Hacky way to avoid resizing windows with scroll wheel
-colorscheme delek
+colorscheme molokai
 
 " Tab and wrap settings
 set tabstop=4
@@ -39,6 +46,10 @@ set nowrap                      " Let lines trail off the edge of the terminal w
 
 set printoptions=paper:letter,duplex:on
 
+" Highlight the 81st column if applicable
+highlight ColorColumn ctermbg=blue
+call matchadd('ColorColumn', '\%81v', 100)
+
 "set swapfile                    " Set a swapfile
 "set dir=~/tmp                   " But have it write to ~/tmp instead of the current working directory
 
@@ -61,6 +72,9 @@ au BufRead,BufNewFile *.md setlocal spell
 
 " Mark Trailing Whitespace as an error
 match ErrorMsg '\s\+$'
+
+" Highlight last inserted text
+nnoremap gV `[v`]
 
 " Change split mappings to make navigation easier (who needs screen now?)
 " Arrow keys resize windows (up arrow increases height, down decreases, right
