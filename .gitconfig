@@ -62,6 +62,8 @@
     # Set upstream
     su = branch -u
 
+    urd = update-ref -d
+
 [core]
     excludesfile = .gitignore_global
     autocrlf = input
