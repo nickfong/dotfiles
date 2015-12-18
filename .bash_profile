@@ -233,36 +233,40 @@ if hash jekyll 2>/dev/null; then
     alias jsd="jekyll serve --watch --draft"
 fi
 
-function open() {
-    if hash open 2>/dev/null; then
-        open "$1"
-    fi
-    test $# -lt 1 && echo "Too few arguments"
-    test $# -gt 1 && echo "Too many arguments"
-    EXTENSION=${1#*.}
-    case ${EXTENSION,,} in
-        pdf)
-            evince "$1"
-            ;;
-        jpg)
-            if hash eog 2>/dev/null; then
-                eog "$1"
-            else
-                xdg-open "$1"
-            fi
-            ;;
-        png)
-            if hash eog 2>/dev/null; then
-                eog "$1"
-            else
-                xdg-open "$1"
-            fi
-            ;;
-        *)
-            xdg-open "$1"
-            ;;
-    esac
-}
+if hash xdg-open 2>/dev/null; then
+    alias open="xdg-open"
+fi
+
+#function open() {
+#    if hash open 2>/dev/null; then
+#        open "$1"
+#    fi
+#    test $# -lt 1 && echo "Too few arguments"
+#    test $# -gt 1 && echo "Too many arguments"
+#    EXTENSION=${1#*.}
+#    case ${EXTENSION,,} in
+#        pdf)
+#            evince "$1"
+#            ;;
+#        jpg)
+#            if hash eog 2>/dev/null; then
+#                eog "$1"
+#            else
+#                xdg-open "$1"
+#            fi
+#            ;;
+#        png)
+#            if hash eog 2>/dev/null; then
+#                eog "$1"
+#            else
+#                xdg-open "$1"
+#            fi
+#            ;;
+#        *)
+#            xdg-open "$1"
+#            ;;
+#    esac
+#}
 
 ## end .bash_profile ##
 
