@@ -14,6 +14,11 @@ case $(uname) in
         alias ls='ls -GlhpF --color=auto'
         alias ll='ls -GalhpF'
         alias l='ls -GlhpF'
+
+        # Make dmesg output human-readable timestamps
+        # May be inaccurate because the time source is not updated after
+        # SUSPEND/RESUME; see dmesg(1)
+        alias dmesg='dmesg -T'
         ;;
     "Darwin")
         # Set custom navigation/display
