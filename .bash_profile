@@ -191,6 +191,7 @@ make_prompt() {
 
 PROMPT_COMMAND='PS1=$(make_prompt)'
 export PS2="[\d \t] continue> "
+export PS3="[\d \t] continue>> "
 
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
