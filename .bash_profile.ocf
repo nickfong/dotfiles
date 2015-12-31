@@ -1,4 +1,0 @@
-## begin .bash_profile.ocf ##
-source /opt/ocf/share/environment/.bashrc
-## end .bash_profile.ocf ##
-
