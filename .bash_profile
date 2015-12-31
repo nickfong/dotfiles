@@ -206,7 +206,7 @@ man() {
 
 # Source RVM if it exists
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" && export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.gem/ruby/2.2.0/bin" ]] && export PATH=$PATH:$HOME/.gem/ruby/2.2.0/bin
+[[ -s "$HOME/.gem/ruby/2.3.0/bin" ]] && export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 
 # Arch Linux Specific
 if hash pacman 2>/dev/null; then
