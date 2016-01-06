@@ -83,3 +83,6 @@
 [merge]
     tool = vimdiff
 
+[status]
+    relativePaths = false
+
