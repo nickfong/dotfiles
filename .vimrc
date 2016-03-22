@@ -60,10 +60,10 @@ au BufRead,BufNewFile *.txt setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au BufRead,BufNewFile *.tex setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.py setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.rb setlocal shiftwidth=4 softtabstop=4 tabstop=4
+au BufRead,BufNewFile *.yml  setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au BufNewFile,BufRead *.coffee set filetype=javascript
 au BufNewFile,BufRead *.cls set filetype=plaintex
 autocmd Filetype gitcommit setlocal spell textwidth=72
-au BufNewFile,BufRead *.cl setf cool
 
 " Set automatic enabling of spell check only for .tex, .txt, and .md files
 au BufRead,BufNewFile *.txt setlocal spell
@@ -111,7 +111,11 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 " Miscellaneous Keybindings
-nnoremap <F5> :set wrap!<CR>
+" Toggle text wrap
+nnoremap <F5> :set wrap! wrap?<cr>
+" Remove trailing whitespace
+nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <F7> :if exists("syntax_on") \| syntax off \| else \| syntax on \| endif \|<cr><C-g>
 "nooremap <F7> :call ToggleNumber()
 "nooremap <F7> :set norelativenumber<CR>
 
@@ -146,7 +150,7 @@ nnoremap L $
 
 " Automatically remove trailing whitespace before saving
 "autocmd FileType c,java,rb,tex,feature,txt,py,html,css autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd BufWritePre <buffer> :%s/\s\+$//e
+" autocmd BufWritePre <buffer> :%s/\s\+$//e
 nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 " Show tabs in file so they can be expunged
 set list listchars=tab:»·,trail:·
