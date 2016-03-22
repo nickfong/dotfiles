@@ -65,6 +65,11 @@
 
     urd = update-ref -d
 
+    # Bisect
+    bis = bisect start
+    bb = bisect bad
+    bg = bisect good
+
 [core]
     excludesfile = .gitignore_global
     autocrlf = input
