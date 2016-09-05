@@ -1,4 +1,8 @@
 ## begin .bash_profile ##
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 export VISUAL=vim
 export EDITOR=vim
 
@@ -219,12 +223,14 @@ if hash pacman 2>/dev/null; then
     alias syu='sudo pacman -Syu'
     alias rs='sudo pacman -Rs'
 
-    alias archstart="sudo sysctl -p; $BASE/dropbox.py start; sudo pacman -Syu"
+    alias pacman='sudo pacman'
+
+#    alias archstart="sudo sysctl -p; $BASE/dropbox.py start; sudo pacman -Syu"
 
     alias neteditor="/usr/bin/nm-connection-editor"
 
     if hash redshift 2>/dev/null; then
-        alias redshift='redshift -l 40:124'
+        alias redshift='redshift -l 40:-124'
     fi
 
     if hash vboxreload 2>/dev/null; then
