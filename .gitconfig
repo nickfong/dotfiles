@@ -59,6 +59,7 @@
     mt = mergetool
     mnf = merge --no-ff
     fancymerge = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git checkout master; git pull --rebase origin master; git merge --no-ff $1; set +e; }; func"
+    rebasemaster = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git rebase master; git push --force; }; func"
 
     # Set upstream
     su = branch -u
