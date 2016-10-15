@@ -96,7 +96,7 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     EXECUTABLE='ex'
     if [ $(uname) == "Linux" ]; then
         export CLICOLOR=1
-        export LSCOLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
+        export LS_COLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
     fi
 
     # Set colors for shell prompt
