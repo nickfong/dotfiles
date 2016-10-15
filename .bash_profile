@@ -43,6 +43,12 @@ alias g='git'
 alias v='vim'
 alias reload='source ~/.bash_profile'
 alias rmspaces='find . -depth | rename " " "_" *'
+alias mkdirp='mkdir -p'
+alias oda='od -t x1c'
+
+# Alias existing commands
+alias pylint='pylint --output-format=colorzed'
+alias less='less -R'
 
 # Share screen session
 alias csharescreen='screen -dmS sharedscreen'
@@ -259,6 +265,17 @@ title: "$1"
 tags:
 ---
 EOF
+}
+
+function pcurl() {
+    if [[ $# -ne 1 ]]; then
+        echo "This function requres exactly one argument"
+        return
+    fi
+    false   # Force $? to be non-zero
+    while [[ $? -ne 0 ]]; do
+        curl "$1"
+    done
 }
 
 ## end .bash_profile ##
