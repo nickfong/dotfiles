@@ -45,6 +45,7 @@ alias reload='source ~/.bash_profile'
 alias rmspaces='find . -depth | rename " " "_" *'
 alias mkdirp='mkdir -p'
 alias oda='od -t x1c'
+alias cs="cd '$1'; ls"
 
 # Alias existing commands
 alias pylint='pylint --output-format=colorzed'
@@ -267,6 +268,7 @@ tags:
 EOF
 }
 
+# Persistent Curl:  repeat curl command until it succeeds
 function pcurl() {
     if [[ $# -ne 1 ]]; then
         echo "This function requres exactly one argument"
@@ -277,6 +279,25 @@ function pcurl() {
         curl "$1"
     done
 }
+
+# Recursive, case-insensitive grep:  grep for a string ignoring case recursively
+function rigrep() {
+    if [[ $# -ne 1 ]]; then
+        echo "This function requres exactly one argument"
+        return
+    fi
+    grep -ri "$1" 2>/dev/null
+}
+
+if ! has f 2>/dev/null; then
+    function f() {
+        if [[ $# -ne 1 ]]; then
+            echo "This function requres exactly one argument"
+            return
+        fi
+        find . -name "$1"
+    }
+fi
 
 ## end .bash_profile ##
 
