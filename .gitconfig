@@ -13,10 +13,15 @@
 
     # Commit
     ca = commit -a
+    cas = commit -aS
     ci = commit
+    cis = commit -S
     cm = commit -m
+    cms = commit -mS
     cam = commit -am
+    cams = commit -amS
     cia = commit --amend
+    cias = commit --amend -S
 
     # Info
     st = status
