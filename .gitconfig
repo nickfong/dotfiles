@@ -80,6 +80,12 @@
     fancymerge = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git checkout master; git pull --rebase origin master; git merge --no-ff $1; set +e; }; func"
     rebasemaster = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git rebase master; git push --force; }; func"
 
+    # Stash-Drop --force
+    # 1. Show the list of stashes
+    # 2. Wait 3 seconds to provide a chance to cancel
+    # 3. Drop all stashes
+    sdf = "!func() { echo $(git stash list); sleep 3; while [ $? -eq 0 ]; do git stash drop; done; true; }; func"
+
     # Set upstream
     su = branch -u
 
