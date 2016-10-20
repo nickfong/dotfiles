@@ -25,16 +25,25 @@
 
     # Info
     st = status
+    sts = status -sb
+    stsu = status -sb -uno
     sh = show
     d = diff
     dc = diff --cached
-    lg = log -p
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    lolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration
     ls = ls-files
     alias = config --get-regexp ^alias\\.
     ign = ls-files -o -i --exclude-standard         # Ignored files
+
+    # Log
+    lg = log -p
+    lgs = log --stat
+    lgps = log -p --stat
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration
+    slol = log --graph --decorate --pretty=oneline --abbrev-commit --show-signature
+    slola = log --graph --decorate --pretty=oneline --abbrev-commit --all --show-signature
+    slolas = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration --show-signature
 
     # Remotes
     rv = remote -v
@@ -45,6 +54,11 @@
     # Pull/push
     pr = pull --rebase
     p = push
+    # The equivalent of a pull --rebase --force
+    # 1. stash
+    # 2. pull --rebase
+    # 3. stash apply
+    prf = "!func() { git stash; git pull --rebase; git stash apply; {; func"
 
     # Branches
     br = branch
