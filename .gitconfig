@@ -33,6 +33,7 @@
     ls = ls-files
     alias = config --get-regexp ^alias\\.
     ign = ls-files -o -i --exclude-standard         # Ignored files
+    g = grep -n
 
     # Log
     lg = log -p
@@ -88,7 +89,6 @@
 
     # Set upstream
     su = branch -u
-
     urd = update-ref -d
 
     # Bisect
