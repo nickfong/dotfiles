@@ -299,5 +299,12 @@ if ! has f 2>/dev/null; then
     }
 fi
 
+# Load machine-specific dotfiles
+for file in $(/bin/ls $HOME/.bash_profile.*); do
+    echo -n "Sourcing $file..."
+    source $file
+    echo " done."
+done
+
 ## end .bash_profile ##
 
