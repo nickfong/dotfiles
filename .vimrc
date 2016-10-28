@@ -127,6 +127,7 @@ nnoremap <F10> :cw <CR>
 
 " Insert Debug Statement
 autocmd Filetype python nnoremap <F8> oimport pdb; pdb.set_trace()<ESC> :w<CR>
+autocmd Filetype python nnoremap <F9> ggVG:s/.*import pdb; pdb.set_trace()\n//
 
 " Lint
 autocmd Filetype python nnoremap <F11> :w <CR> <ESC> :! pylint "%"<CR>
