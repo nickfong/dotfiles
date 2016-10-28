@@ -63,6 +63,7 @@ au BufRead,BufNewFile *.rb setlocal shiftwidth=4 softtabstop=4 tabstop=4
 au BufRead,BufNewFile *.yml  setlocal shiftwidth=2 softtabstop=2 tabstop=2
 au BufNewFile,BufRead *.coffee set filetype=javascript
 au BufNewFile,BufRead *.cls set filetype=plaintex
+au BufRead,BufNewFile *.json set filetype=json
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Set automatic enabling of spell check only for .tex, .txt, and .md files
@@ -102,7 +103,7 @@ nnoremap <F4> :!git push<CR> <CR>
 " Toggle relative or absolute line numbers with Control-n
 function! NumberToggle()
     if(&relativenumber == 1)
-        set relativenumber!
+        set number
     else
         set relativenumber
     endif
@@ -120,15 +121,28 @@ nnoremap <F7> :if exists("syntax_on") \| syntax off \| else \| syntax on \| endi
 "nooremap <F7> :set norelativenumber<CR>
 
 " Compile keybindings
+" TODO:  Move these to ~/.vim/ftplugin/<filetype>_mappings.vim
 nnoremap <F9> :make <CR><CR>
 nnoremap <F10> :cw <CR>
-nnoremap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
+
+" Insert Debug Statement
+autocmd Filetype python nnoremap <F8> oimport pdb; pdb.set_trace()<ESC> :w<CR>
+
+" Lint
+autocmd Filetype python nnoremap <F11> :w <CR> <ESC> :! pylint "%"<CR>
+autocmd Filetype json nnoremap <F11> :w <CR> <ESC> :! python -m json.tool "%"<CR>
+
+" Build
+autocmd Filetype python nnoremap <F12> :w <CR> <ESC> :! python "%"<CR>
+autocmd Filetype tex nnoremap <F12> :w <CR> <ESC> :! pdflatex "%"; pdflatex "%"; rm *.aux; rm *.log;<CR><CR>
 
 " Map :Q to :q, :W to :w, and :Wq to :wq, ignore q: typo
 command! Q quit
 command! W write
 command! Wq wq
 map q: :q
+
+nnoremap - <NOP>
 
 " Add python/bash/ruby comments faster
 " Also: block --> I --> # --> Esc
@@ -158,7 +172,7 @@ set list listchars=tab:»·,trail:·
 " Make saving and quitting faster
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>Q :wq<CR>
 
 " Use the system clipboard for copying and pasting by prefixing with Leader
 vnoremap <Leader>y "+y
