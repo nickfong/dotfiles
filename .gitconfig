@@ -59,7 +59,7 @@
     # 1. stash
     # 2. pull --rebase
     # 3. stash apply
-    prf = "!func() { git stash; git pull --rebase; git stash apply; {; func"
+    prf = "!func() { git stash; git pull --rebase; git stash apply; }; func"
 
     # Branches
     br = branch
