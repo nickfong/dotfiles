@@ -118,25 +118,6 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 
     SYSCOLOR=$GREEN
 
-    if [ -a ~/.bash_profile.personal ]; then
-        source ~/.bash_profile.personal
-        SYSCOLOR=$CYAN
-    fi
-
-    if [ -a ~/.bash_profile.ocf ]; then
-        source ~/.bash_profile.ocf
-        SYSCOLOR=$WHITE
-    fi
-
-    if [ -a ~/.bash_profile.nersc ]; then
-        source ~/.bash_profile.nersc
-        SYSCOLOR=$RED
-    fi
-
-    if [ -a ~/.bash_profile.inst ]; then
-        source ~/.bash_profile.inst
-        SYSCOLOR=$BLUE
-    fi
     GIT_CLEAN=$GREEN
     GIT_DIRTY=$RED
 else
