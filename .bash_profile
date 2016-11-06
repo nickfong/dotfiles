@@ -6,13 +6,22 @@
 export VISUAL=vim
 export EDITOR=vim
 
+# Set the GPG_TTY env variable so that pinentry happens in the console
+if hash gpg 2>/dev/null || hash gpg2 2>/dev/null; then
+    export GPG_TTY=$(tty)
+fi
+
+shopt -s histappend
+
 case $(uname) in
     "Linux")
         # No need to type cd
         shopt -s autocd
 
-        export HISTTIMEFORMAT='%F %T '  # Show timestamps with histoyr
-        export HISTCONTROL=ignorespace  # Prepend command w/space to omit from history
+        # Prepend a timestamp to history items, and ignore commands preceded by
+        # a space or duplicate commands
+        export HISTTIMEFORMAT='%F %T '
+        export HISTCONTROL=ignorespace:ignoredups
 
         # Set custom navigation/display
         alias ls='ls -GlhpF --color=auto'
