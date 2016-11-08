@@ -1,0 +1,24 @@
+#!/bin/bash
+
+for file in $(/bin/ls -a); do
+    echo "Installing $file..."
+    # Create a backup of the file assuming one hasn't already been created
+    # (don't clobber the original backup if this script is run multiple times)
+    if [ -e $HOME/$file && ! -e $HOME/$file.bak ]; then
+        echo "Creating backup of $HOME/$file..."
+        cp $HOME/$file $HOME/$file.bak
+    fi
+
+    # Symlink the file
+    echo "Creating symlink..."
+    ln -s $file $HOME/$file
+
+    # Concatenate
+    if [ -e $HOME/$file.bak ]; then
+        echo "Concatenating original version of $file..."
+        cat $HOME/$file.bak >> $HOME/$file
+    fi
+
+    echo "Done."
+    echo
+done
