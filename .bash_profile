@@ -11,6 +11,12 @@ if hash gpg 2>/dev/null || hash gpg2 2>/dev/null; then
     export GPG_TTY=$(tty)
 fi
 
+# SSH agent
+function sa() {
+    eval "$(ssh-agent -s)"
+    ssh-add
+}
+
 shopt -s histappend
 
 case $(uname) in
@@ -59,6 +65,7 @@ alias cs="cd '$1'; ls"
 # Alias existing commands
 alias pylint='pylint --output-format=colorzed'
 alias less='less -R'
+alias tmux='tmux -2'
 
 # Share screen session
 alias csharescreen='screen -dmS sharedscreen'
