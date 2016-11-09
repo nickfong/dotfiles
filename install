@@ -1,24 +1,57 @@
 #!/bin/bash
 
-for file in $(/bin/ls -a); do
-    echo "Installing $file..."
-    # Create a backup of the file assuming one hasn't already been created
-    # (don't clobber the original backup if this script is run multiple times)
-    if [ -e $HOME/$file && ! -e $HOME/$file.bak ]; then
-        echo "Creating backup of $HOME/$file..."
-        cp $HOME/$file $HOME/$file.bak
+set -euo pipefail
+IFS=$'\n\t'
+
+SCRIPT_PATH=$(cd $(dirname $0); pwd -P)
+PROG=$(basename $0)
+
+usage() {
+    echo "\$ $PROG"
+    echo "This script symlinks all files in your current working directory"
+    echo "(except itself and the '.git' directory) to your $HOME directory"
+}
+
+error() {
+    echo -e "ERROR: $1" >&2
+    exit $2
+}
+
+for file in $(/bin/ls -a $SCRIPT_PATH); do
+    if [[ $file =~ $PROG ]] || [[ $SCRIPT_PATH =~ $file ]] || ( [[ $file =~ ".git" ]] && [ -d $file ] ); then
+        echo "Skipping install of $file."
+    else
+        echo "Installing $file..."
+        # Create a backup of the file assuming one hasn't already been created
+        # (don't clobber the original backup if this script is run multiple times)
+        if [ -e $HOME/$file ]; then
+            if [ ! -e $HOME/$file.bak ]; then
+                echo "Creating backup of $HOME/$file..."
+                mv $HOME/$file $HOME/$file.bak
+            else
+                TMP_DIR=$(mktemp -d /tmp/install-dotfiles.XXXXX)
+                echo "Creating backup of $HOME/$file..."
+                mv $HOME/$file $TMP_DIR
+                echo "Moved to $TMP_DIR"
+            fi
+        fi
+
+        # Remove old symlink
+        if [ -h $HOME/$file ]; then
+            rm $HOME/$file
+        fi
+
+        # Symlink the file
+        echo "Creating symlink..."
+        ln -s $SCRIPT_PATH/$file $HOME/$file
+
+        # Concatenate
+        if [ -e $HOME/$file.bak ] && [ ! -d $HOME/$file.bak ] ; then
+            echo "Concatenating original version of $file..."
+            cat $HOME/$file.bak >> $HOME/$file
+        fi
+
+        echo "Done."
+        echo
     fi
-
-    # Symlink the file
-    echo "Creating symlink..."
-    ln -s $file $HOME/$file
-
-    # Concatenate
-    if [ -e $HOME/$file.bak ]; then
-        echo "Concatenating original version of $file..."
-        cat $HOME/$file.bak >> $HOME/$file
-    fi
-
-    echo "Done."
-    echo
 done
