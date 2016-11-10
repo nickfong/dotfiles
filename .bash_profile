@@ -286,7 +286,7 @@ function rigrep() {
     grep -ri "$1" 2>/dev/null
 }
 
-if ! has f 2>/dev/null; then
+if ! hash f 2>/dev/null; then
     function f() {
         if [[ $# -ne 1 ]]; then
             echo "This function requres exactly one argument"
@@ -297,7 +297,7 @@ if ! has f 2>/dev/null; then
 fi
 
 # Load machine-specific dotfiles
-if [ -f $HOME/.bash_profile.* ]; then
+if [ $(/bin/ls $HOME/.bash_profile.*) ]; then
     for file in $(/bin/ls $HOME/.bash_profile.*); do
         echo -n "Sourcing $file..."
         source $file
