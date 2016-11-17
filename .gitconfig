@@ -85,7 +85,7 @@
     # 1. Show the list of stashes
     # 2. Wait 3 seconds to provide a chance to cancel
     # 3. Drop all stashes
-    sdf = "!func() { echo $(git stash list); sleep 3; while [ $? -eq 0 ]; do git stash drop; done; true; }; func"
+    sdf = "!func() { git stash list | cat; sleep 3; while [ $? -eq 0 ]; do git stash drop; done; true; }; func"
 
     # Set upstream
     su = branch -u
