@@ -63,7 +63,7 @@ alias oda='od -t x1c'
 alias cs="cd '$1'; ls"
 
 # Alias existing commands
-alias pylint='pylint --output-format=colorzed'
+alias pylint='pylint --output-format=colorized'
 alias less='less -R'
 alias tmux='tmux -2'
 
@@ -283,7 +283,7 @@ function rigrep() {
         echo "This function requres exactly one argument"
         return
     fi
-    grep -ri "$1" 2>/dev/null
+    grep -ri "$1" * 2>/dev/null
 }
 
 if ! hash f 2>/dev/null; then
