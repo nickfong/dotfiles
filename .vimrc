@@ -3,6 +3,9 @@
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 set timeoutlen=100              " Compromise between airline and leader timeout
 
@@ -127,7 +130,7 @@ nnoremap <F10> :cw <CR>
 
 " Insert Debug Statement
 autocmd Filetype python nnoremap <F8> oimport pdb; pdb.set_trace()<ESC> :w<CR>
-autocmd Filetype python nnoremap <F9> ggVG:s/.*import pdb; pdb.set_trace()\n//
+autocmd Filetype python nnoremap <F9> ggVG:s/^.*import pdb; pdb.set_trace()\n//<CR>
 
 " Lint
 autocmd Filetype python nnoremap <F11> :w <CR> <ESC> :! pylint "%"<CR>
