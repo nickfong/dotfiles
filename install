@@ -19,7 +19,7 @@ error() {
 
 for file in $(/bin/ls -a $SCRIPT_PATH); do
     if [[ $file =~ $PROG ]] || [[ $SCRIPT_PATH =~ $file ]] || ( [[ $file =~ ".git" ]] && [ -d $file ] ); then
-        echo "Skipping install of $file."
+        echo "Skipping install of '$file'."
     else
         echo "Installing $file..."
         # Create a backup of the file assuming one hasn't already been created
