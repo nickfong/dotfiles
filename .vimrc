@@ -128,6 +128,10 @@ nnoremap <F7> :if exists("syntax_on") \| syntax off \| else \| syntax on \| endi
 nnoremap <F9> :make <CR><CR>
 nnoremap <F10> :cw <CR>
 
+" Jekyll-related syntax
+autocmd Filetype markdown nnoremap <F10> i{% highlight shell %}
+autocmd Filetype markdown nnoremap <F11> i{% endhighlight %}
+
 " Insert Debug Statement
 autocmd Filetype python nnoremap <F8> oimport pdb; pdb.set_trace()<ESC> :w<CR>
 autocmd Filetype python nnoremap <F9> ggVG:s/^.*import pdb; pdb.set_trace()\n//<CR>
