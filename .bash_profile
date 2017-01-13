@@ -11,6 +11,9 @@ if hash gpg 2>/dev/null || hash gpg2 2>/dev/null; then
     export GPG_TTY=$(tty)
 fi
 
+# Don't make .pyc files
+export PYTHONDONTWRITEBYTECODE=1
+
 # SSH agent
 function sa() {
     eval "$(ssh-agent -s)"
@@ -288,11 +291,11 @@ function rigrep() {
 
 if ! hash f 2>/dev/null; then
     function f() {
-        if [[ $# -ne 1 ]]; then
-            echo "This function requres exactly one argument"
-            return
-        fi
-        find . -name "$1"
+#        if [[ $# -ne 1 ]]; then
+#            echo "This function requres exactly one argument"
+#            return
+#        fi
+        find . -name $1
     }
 fi
 
