@@ -96,6 +96,11 @@
     bb = bisect bad
     bg = bisect good
 
+    # Cherry-Pick
+    cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
+
 [core]
     excludesfile = .gitignore_global
     autocrlf = input
