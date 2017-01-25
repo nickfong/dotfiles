@@ -86,6 +86,9 @@ alias gpgsym='gpg --armor --symmetric'
 alias sshtunnel='ssh -ND'
 alias tunnelchromium='/usr/bin/chromium --proxy-server="socks5://localhost:1080"'
 
+# Second Chrome
+alias privatechrome="/usr/bin/chromium --user-data-dir=$(mktemp -d)"
+
 # Set colors if available
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     # Set colors for ls
@@ -123,6 +126,7 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     if [ $(uname) == "Linux" ]; then
         export CLICOLOR=1
         export LS_COLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
+#        export LSCOLORS="$DIRECTORY=$BLUE:$FILE=$WHITE:$SYMLINK=$LIGHT_BLUE:$FIFO=$ORANGE:$SOCKET=$YELLOW:$BLOCK=$LIGHT_GREEN:$CHAR=$GREY:$ORPHAN=$YELLOW:$MISSING=$YELLOW:$EXECUTABLE=$RED"
     fi
 
     # Set colors for shell prompt
