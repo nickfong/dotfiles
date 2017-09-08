@@ -23,7 +23,7 @@ function sa() {
 shopt -s histappend
 
 case $(uname) in
-    "Linux")
+    "Linux"|"Darwin")  # For this to work, Bash>=4.0 must be installed in Darwin
         # No need to type cd
         shopt -s autocd
 
@@ -33,7 +33,7 @@ case $(uname) in
         export HISTCONTROL=ignorespace:ignoredups
 
         # Set custom navigation/display
-        alias ls='ls -GlhpF --color=auto'
+        alias ls='ls -GlhpF'
         alias ll='ls -GalhpF'
         alias l='ls -GlhpF'
 
@@ -41,12 +41,6 @@ case $(uname) in
         # May be inaccurate because the time source is not updated after
         # SUSPEND/RESUME; see dmesg(1)
         alias dmesg='dmesg -T'
-        ;;
-    "Darwin")
-        # Set custom navigation/display
-        alias ls='ls -GlhpF'
-        alias ll='ls -GalhpF'
-        alias l='ls -GlhpF'
         ;;
 esac
 
