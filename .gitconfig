@@ -4,6 +4,7 @@
 [user]
     name = Nicholas Fong
     email = nickfong@users.noreply.github.com
+    signingkey = 1E53D2078966B09F
 
 [alias]
     # Add
