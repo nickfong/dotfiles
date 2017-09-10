@@ -1,5 +1,16 @@
 "" begin ~/.vimrc
 
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'           " Required
+Plugin 'davidhalter/jedi-vim'           " Python Autocomplete
+Plugin 'vim-airline/vim-airline'        " Statusbar
+Plugin 'vim-airline/vim-airline-themes' " Statusbar Themes
+Plugin 'tpope/vim-fugitive'             " Git functionality
+
+call vundle#end()
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
