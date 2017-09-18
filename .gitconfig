@@ -24,13 +24,19 @@
     cia = commit --amend
     cias = commit --amend -S
 
-    # Info
+    # Showing/Diffing
+    sh = show
+    d = diff
+    ds = diff -- stat
+    dc = diff --cached
+    dsc = diff --cached --stat
+
+    # Status
     st = status
     sts = status -sb
     stsu = status -sb -uno
-    sh = show
-    d = diff
-    dc = diff --cached
+
+    # Info
     ls = ls-files
     alias = config --get-regexp ^alias\\.
     ign = ls-files -o -i --exclude-standard         # Ignored files
