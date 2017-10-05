@@ -27,7 +27,7 @@
     # Showing/Diffing
     sh = show
     d = diff
-    ds = diff -- stat
+    ds = diff --stat
     dc = diff --cached
     dsc = diff --cached --stat
 
