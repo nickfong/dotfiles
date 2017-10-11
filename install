@@ -25,9 +25,9 @@ for file in $(/bin/ls -a $SCRIPT_PATH); do
         # Create a backup of the file assuming one hasn't already been created
         # (don't clobber the original backup if this script is run multiple times)
         if [ -e $HOME/$file ]; then
-            if [ ! -e $HOME/$file.bak ]; then
+            if [ ! -e $HOME/$file'_bak' ]; then
                 echo "Creating backup of $HOME/$file..."
-                mv $HOME/$file $HOME/$file.bak
+                mv $HOME/$file $HOME/$file'_bak'
             else
                 TMP_DIR=$(mktemp -d /tmp/install-dotfiles.XXXXX)
                 echo "Creating backup of $HOME/$file..."
@@ -46,9 +46,9 @@ for file in $(/bin/ls -a $SCRIPT_PATH); do
         ln -s $SCRIPT_PATH/$file $HOME/$file
 
         # Concatenate
-        if [ -e $HOME/$file.bak ] && [ ! -d $HOME/$file.bak ] ; then
+        if [ -e $HOME/$file.bak ] && [ ! -d $HOME/$file'_bak' ] ; then
             echo "Concatenating original version of $file..."
-            cat $HOME/$file.bak >> $HOME/$file
+            cat $HOME/$file'_bak' >> $HOME/$file
         fi
 
         echo "Done."
