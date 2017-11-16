@@ -109,7 +109,7 @@
     cpc = cherry-pick --continue
 
 [core]
-    excludesfile = .gitignore_global
+    excludesfile = ~/.gitignore_global
     autocrlf = input
     editor = vim
     pager = less -R
