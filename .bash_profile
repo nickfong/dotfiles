@@ -136,6 +136,7 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     SYSCOLOR=$GREEN
 
     GIT_CLEAN=$GREEN
+    GIT_STAGED=$YELLOW
     GIT_DIRTY=$RED
 else
     SYSCOLOR=
@@ -154,10 +155,12 @@ git_branch() {
 
     GIT_BR=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
 
-    if git diff --quiet 2>/dev/null >&2; then
-      GIT_COLOR="$GIT_CLEAN"
-    else
+    if ! git diff --quiet 2>/dev/null >&2; then
       GIT_COLOR="$GIT_DIRTY"
+    elif ! git diff --cached --quiet 2>/dev/null >&2; then
+      GIT_COLOR="$GIT_STAGED"
+    else
+      GIT_COLOR="$GIT_CLEAN"
     fi
 
     echo "\[$GIT_COLOR\]($GIT_BR)"
