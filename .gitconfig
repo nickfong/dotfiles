@@ -67,6 +67,7 @@
     # 2. pull --rebase
     # 3. stash apply
     prf = "!func() { git stash; git pull --rebase; git stash apply; }; func"
+    signall = rebase --exec 'git commit --amend --no-edit -n -S' -i
 
     # Branches
     br = branch
@@ -85,6 +86,7 @@
     ra = rebase --abort
     mt = mergetool
     mnf = merge --no-ff
+    mnfs = merge --no-ff --gpg-sign
     fancymerge = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git checkout master; git pull --rebase origin master; git merge --no-ff $1; set +e; }; func"
     rebasemaster = "!func() { set -e; git checkout $1; git pull --rebase origin $1; git rebase master; git push --force; }; func"
 
