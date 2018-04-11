@@ -309,4 +309,29 @@ if [ $(/bin/ls $HOME/.bash_profile.*) ]; then
     done
 fi
 
+# There isn't a clean way to insert LaTeX into Slack.  In lieu of a plugin,
+# create a skeleton .tex file and open in VIm so that a screenshot can be taken
+function latex_skeleton() {
+    cat > $1.tex <<EOF
+\documentclass{article}
+
+\usepackage{amssymb,amsmath,amsthm,siunitx}
+\usepackage[version=3]{mhchem}
+\begin{document}
+
+\begin{equation}
+    \begin{split}
+        42
+    \end{split}
+\end{equation}
+\end{document}
+EOF
+    vim $1.tex
+}
+
+function docker_attach() {
+    docker exec -it $1 /bin/bash
+}
+
+alias hash_files='for f in $(/bin/ls); do new=$(echo $f | cut -d"." -f 1-1 | md5); rest=$(echo $f | cut -d"." -f 2-); mv $f $new.$rest; done'
 ## end .bash_profile ##
